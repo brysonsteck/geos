@@ -11,6 +11,10 @@
 file(GLOB_RECURSE _sources ${CMAKE_CURRENT_LIST_DIR}/*.c  CONFIGURE_DEPEND)
 add_library(ryu OBJECT ${_sources})
 target_include_directories(ryu PUBLIC ${CMAKE_CURRENT_LIST_DIR})
+if(BUILD_SHARED_LIBS)
+  target_compile_definitions(ryu
+    PRIVATE $<$<BOOL:${WIN32}>:GEOS_DLL_EXPORT>)
+endif()
 set_target_properties(ryu PROPERTIES
   POSITION_INDEPENDENT_CODE ON
   C_STANDARD 99

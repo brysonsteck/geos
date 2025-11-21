@@ -356,7 +356,7 @@ endif()
 #-----------------------------------------------------------------------------
 add_library(geos_c "")
 add_library(GEOS::geos_c ALIAS geos_c)
-target_link_libraries(geos_c PRIVATE geos)
+target_link_libraries(geos_c PRIVATE geos $<BUILD_INTERFACE:ryu>)
 
 # Leave install with an RPATH approach to linking
 #if(APPLE AND BUILD_SHARED_LIBS)
